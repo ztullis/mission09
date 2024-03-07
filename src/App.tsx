@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 interface TeamProps {
   tid: number;
@@ -19,12 +19,13 @@ function App() {
   const [teamNames, setTeamNames] = useState<TeamProps[]>([]);
 
   useEffect(() => {
-    fetch("CollegeBasketballTeams.json")
+    fetch('./CollegeBasketballTeams.json')
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setTeamNames(data.teams);
       })
-      .catch((error) => console.error("Error fetching team data:", error));
+      .catch((error) => console.error('Error fetching team data:', error));
   }, []);
 
   function Welcome() {
@@ -50,7 +51,7 @@ function App() {
   function TeamList() {
     return (
       <div>
-        {teamNames.map((teamNum, index) => (
+        {teamNames.map((teamNum: TeamProps, index: number) => (
           <Team key={index} {...teamNum} />
         ))}
       </div>
